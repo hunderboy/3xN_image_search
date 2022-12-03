@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'page/lobby.dart';
@@ -14,13 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // /// 상태파 컬러 앱 전체 적용
-    // SystemChrome.setSystemUIOverlayStyle(
-    //     const SystemUiOverlayStyle(
-    //       /// ios
-    //       statusBarBrightness: Brightness.dark, // ios 상태바 텍스트 컬러 = white
-    //     )
-    // );
+    /// 상태파 컬러 앱 전체 적용
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+          /// ios
+          statusBarBrightness: Brightness.dark, // ios 상태바 텍스트 컬러 = white
+          // statusBarBrightness: Brightness.light,
+        )
+    );
 
     return GetMaterialApp(
         title: 'FunctionModule',
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
 
           GetPage(
               name: "/",
-              page: () => const Lobby(),
+              page: () => Lobby(),
               transition: Transition.rightToLeft),
           // GetPage(
           //     name: "/ShowPicture",

@@ -18,12 +18,13 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     _controller = AnimationController(vsync: this);
 
     // 화면이 시작되고 몇초간의 딜레이 후, 다음 화면으로 넘어가는 부분
-    new Future.delayed(
-    const Duration(seconds: 5),
-    () => Navigator.pushAndRemoveUntil(
-    context,
-    MaterialPageRoute(builder: (BuildContext context) => Lobby()),
-    (route) => false));
+    Future.delayed(
+      const Duration(seconds: 5),
+      () => Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (BuildContext context) => Lobby()),
+      (route) => false)
+    );
   }
 
   @override
@@ -47,6 +48,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
               // width: 300,
               child:
               Lottie.asset(
+                  // "assets/lottie/text-animation.json",
                   "assets/lottie/8546-aperture-logo-loading.json",
                   controller: _controller, onLoaded: (composition) {
                     _controller.addStatusListener((status) {
