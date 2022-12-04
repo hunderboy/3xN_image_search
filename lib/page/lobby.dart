@@ -36,7 +36,7 @@ class Lobby extends GetView<LobbyController> {
           searchBarController: controller.searchBarController,
           cancellationWidget: const Text("취소"),
           placeHolder: const Center(child: Text("이미지를 검색하여 주세요")),
-          emptyWidget: const Center(child: Text("비어있음")),
+          emptyWidget: const Center(child: Text("검색 결과가 없습니다.")),
           indexedScaledTileBuilder: (int index) => ScaledTile.count(1, index.isEven ? 2 : 1),
 
           onCancelled: () {

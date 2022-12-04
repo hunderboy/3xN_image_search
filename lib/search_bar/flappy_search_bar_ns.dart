@@ -313,6 +313,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
     _cancel();
   }
 
+  /// 에러처리
   @override
   void onError(Error error) {
     setState(() {
@@ -329,20 +330,24 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
 
     // Timer(몇초뒤에 실핼할건가?, 실행할 함수)
     _debounce = Timer(widget.debounceDuration, () async {
+      // print('newText : $newText, 길이 : ${newText.length}');
+      // String trimed_text = newText.trim();
+      // print('after trim : $trimed_text, 길이 : ${trimed_text.length}');
 
-      if(newText.isEmpty){
+      /// 스페이스 바 는 어떻게 처리할 것인가?
+      if(trimed_text.isEmpty){
         // do nothing
       }
       // 글자수 1개인 경우
-      else if(newText.length < widget.minimumChars){
+      else if(trimed_text.length < widget.minimumChars){
         Singleton().showToast("글자수 2개 이상 적어 주세요");
       }
       // 글자수 11개 이상인 경우
-      else if(newText.length > widget.maximumChars){
+      else if(trimed_text.length > widget.maximumChars){
         Singleton().showToast("글자수 10개 이하로 적어 주세요");
       }
-      else if (newText.length >= widget.minimumChars) {
-        searchBarController._search(newText, widget.onSearch); // 검색 실행
+      else if (trimed_text.length >= widget.minimumChars) {
+        searchBarController._search(trimed_text, widget.onSearch); // 검색 실행
       } else {
         setState(() {
           _list.clear();
