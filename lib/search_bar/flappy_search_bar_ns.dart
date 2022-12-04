@@ -2,9 +2,9 @@ library flappy_search_bar_ns;
 
 import 'dart:async';
 
+import 'package:assignment_brandi/singleton.dart';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'scaled_tile.dart';
 import 'search_bar_style.dart';
@@ -317,7 +317,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
   void onError(Error error) {
     setState(() {
       _loading = false;
-      _error = widget.onError != null ? widget.onError!(error) : Text("error");
+      _error = widget.onError != null ? widget.onError!(error) : const Center(child: Text("Error"));
     });
   }
 
@@ -329,29 +329,17 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
 
     // Timer(몇초뒤에 실핼할건가?, 실행할 함수)
     _debounce = Timer(widget.debounceDuration, () async {
+
+      if(newText.isEmpty){
+        // do nothing
+      }
       // 글자수 1개인 경우
-      if(newText.length < widget.minimumChars){
-        Fluttertoast.showToast(
-            msg: "글자수 2개 이상 적어 주세요",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+      else if(newText.length < widget.minimumChars){
+        Singleton().showToast("글자수 2개 이상 적어 주세요");
       }
       // 글자수 11개 이상인 경우
       else if(newText.length > widget.maximumChars){
-        Fluttertoast.showToast(
-            msg: "글자수 10개 이하로 적어 주세요",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
+        Singleton().showToast("글자수 10개 이하로 적어 주세요");
       }
       else if (newText.length >= widget.minimumChars) {
         searchBarController._search(newText, widget.onSearch); // 검색 실행
