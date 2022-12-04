@@ -381,7 +381,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
       GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,        // 1 개의 행에 보여줄 item 개수
-            childAspectRatio: 1/1,  // item 의 가로 1, 세로 2 의 비율 (기본은 1대1 비뮬)
+            childAspectRatio: 1/1,    // item 의 가로 1, 세로 2 의 비율 (기본은 1대1 비뮬)
             mainAxisSpacing: 10,      // item 간의 수직 Padding
             crossAxisSpacing: 14,     // item 간의 수평 Padding
           ),
