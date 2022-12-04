@@ -1,10 +1,11 @@
-import 'package:flappy_search_bar_ns/flappy_search_bar_ns.dart';
-import 'package:flappy_search_bar_ns/scaled_tile.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../getx_controller/lobby_controller.dart';
 import '../model/Post.dart';
+import '../search_bar/flappy_search_bar_ns.dart';
+import '../search_bar/scaled_tile.dart';
 import 'detail.dart';
 
 
@@ -31,7 +32,8 @@ class Lobby extends GetView<LobbyController> {
           listPadding: const EdgeInsets.symmetric(horizontal: 10),
 
           debounceDuration: const Duration(milliseconds: 1000), // 1초후 검색이 실행되게 함
-          minimumChars: 2,
+          minimumChars: 2,    // 최소검색어 글자
+          // maximumChars: 10,
           onSearch: controller.getALlPosts,
           searchBarController: controller.searchBarController,
           cancellationWidget: const Text("취소"),

@@ -43,7 +43,7 @@ dependencies:
   dio: ^4.0.6
   json_annotation: ^4.4.0
   lottie: ^2.0.0
-  flappy_search_bar_ns: ^2.0.2
+#  flappy_search_bar_ns: ^2.0.2
 
 
 

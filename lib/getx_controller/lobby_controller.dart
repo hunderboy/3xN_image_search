@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:flappy_search_bar_ns/flappy_search_bar_ns.dart';
 import 'package:get/get.dart';
 
 import '../model/Post.dart';
+import '../search_bar/flappy_search_bar_ns.dart';
 
 class LobbyController extends GetxController {
 
