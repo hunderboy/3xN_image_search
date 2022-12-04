@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'scaled_tile.dart';
 import 'search_bar_style.dart';
@@ -38,9 +39,9 @@ class SearchBarController<T> {
   late int minimumChars;
 
   void setTextController(
-      TextEditingController _searchQueryController, minimunChars) {
-    this._searchQueryController = _searchQueryController;
-    this.minimumChars = minimunChars;
+    TextEditingController searchQueryController, minimunChars) {
+    _searchQueryController = searchQueryController;
+    minimumChars = minimunChars;
   }
 
   void setListener(_ControllerListener _controllerListener) {
@@ -281,14 +282,13 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
   List<T?> _list = [];
   late SearchBarController searchBarController; // 위젯을 생성하면서 컨트롤러 생성
 
+  /// 초기화
   @override
   void initState() {
     super.initState();
-    searchBarController =
-        widget.searchBarController ?? SearchBarController<T>();
+    searchBarController = widget.searchBarController ?? SearchBarController<T>();
     searchBarController.setListener(this);
-    searchBarController.setTextController(
-        _searchQueryController, widget.minimumChars);
+    searchBarController.setTextController(_searchQueryController, widget.minimumChars);
   }
 
   @override
@@ -321,14 +321,40 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
     });
   }
 
+  /// 텍스트 변화 감지
   _onTextChanged(String newText) async {
     if (_debounce?.isActive ?? false) {
       _debounce!.cancel();
     }
 
+    // Timer(몇초뒤에 실핼할건가?, 실행할 함수)
     _debounce = Timer(widget.debounceDuration, () async {
-      if (newText.length >= widget.minimumChars && widget.onSearch != null) {
-        searchBarController._search(newText, widget.onSearch);
+      // 글자수 1개인 경우
+      if(newText.length < widget.minimumChars){
+        Fluttertoast.showToast(
+            msg: "글자수 2개 이상 적어 주세요",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+      }
+      // 글자수 11개 이상인 경우
+      else if(newText.length > widget.maximumChars){
+        Fluttertoast.showToast(
+            msg: "글자수 10개 이하로 적어 주세요",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+      }
+      else if (newText.length >= widget.minimumChars) {
+        searchBarController._search(newText, widget.onSearch); // 검색 실행
       } else {
         setState(() {
           _list.clear();
