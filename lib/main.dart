@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'page/lobby.dart';
-import 'page/splash/splash.dart';
+import 'page/splash.dart';
 
 
 void main() {

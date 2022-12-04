@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../lobby.dart';
+import 'lobby.dart';
 
 
 class Splash extends StatefulWidget {
