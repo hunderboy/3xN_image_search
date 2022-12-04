@@ -1,4 +1,4 @@
-library flappy_search_bar_ns;
+// library flappy_search_bar_ns;
 
 import 'dart:async';
 
@@ -6,9 +6,9 @@ import 'package:assignment_brandi/singleton.dart';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 
+import 'custom_gridview/image_tile.dart';
 import 'scaled_tile.dart';
 import 'search_bar_style.dart';
-import 'staggered_grid_view/flutter_staggered_grid_view.dart';
 
 
 mixin _ControllerListener<T> on State<SearchBar<T>> {
@@ -377,19 +377,23 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
       List<T?> items, Widget Function(T? item, int index) builder) {
     return Padding(
       padding: widget.listPadding,
-      child: StaggeredGridView.countBuilder(
-        crossAxisCount: widget.crossAxisCount,
-        itemCount: items.length,
-        shrinkWrap: widget.shrinkWrap,
-        staggeredTileBuilder: widget.indexedScaledTileBuilder ?? ((int index) => ScaledTile.fit(1)),
-        scrollDirection: widget.scrollDirection,
-        mainAxisSpacing: widget.mainAxisSpacing,
-        crossAxisSpacing: widget.crossAxisSpacing,
-        addAutomaticKeepAlives: true,
-        itemBuilder: (BuildContext context, int index) {
-          return builder(items[index], index);
-        },
-      ),
+      child:
+      GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,        // 1 개의 행에 보여줄 item 개수
+            childAspectRatio: 1/1,  // item 의 가로 1, 세로 2 의 비율 (기본은 1대1 비뮬)
+            mainAxisSpacing: 10,      // item 간의 수직 Padding
+            crossAxisSpacing: 14,     // item 간의 수평 Padding
+          ),
+          // itemCount: deduplicatedList.length,
+          itemCount: 24,
+          itemBuilder: (context, index) {
+            return ImageTile(
+              // title: deduplicatedList[index].name,
+              title : "텍스트"
+            );
+          }
+      )
     );
   }
 
@@ -417,14 +421,15 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
       children: <Widget>[
         Padding(
           padding: widget.searchBarPadding,
-          child: Container(
+          child: SizedBox(
             height: 80,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                /// 검색창
                 Flexible(
                   child: AnimatedContainer(
-                    duration: Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                     width: _animate ? widthMax * .8 : widthMax,
                     decoration: BoxDecoration(
                       borderRadius: widget.searchBarStyle.borderRadius,
@@ -451,6 +456,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
                     ),
                   ),
                 ),
+                /// 취소 버튼
                 GestureDetector(
                   onTap: _cancel,
                   child: AnimatedOpacity(
@@ -458,7 +464,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
                     curve: Curves.easeIn,
                     duration: Duration(milliseconds: _animate ? 1000 : 0),
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 200),
+                      duration: const Duration(milliseconds: 200),
                       width:
                           _animate ? MediaQuery.of(context).size.width * .2 : 0,
                       child: Container(
@@ -478,7 +484,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
           padding: widget.headerPadding,
           child: widget.header ?? Container(),
         ),
-        Expanded(
+        Expanded( /// 그리드 뷰
           child: _buildContent(context)!,
         ),
       ],
