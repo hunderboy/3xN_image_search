@@ -331,7 +331,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
     // Timer(몇초뒤에 실핼할건가?, 실행할 함수)
     _debounce = Timer(widget.debounceDuration, () async {
       // print('newText : $newText, 길이 : ${newText.length}');
-      // String trimed_text = newText.trim();
+      String trimed_text = newText.trim();
       // print('after trim : $trimed_text, 길이 : ${trimed_text.length}');
 
       /// 스페이스 바 는 어떻게 처리할 것인가?
