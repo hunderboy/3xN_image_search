@@ -20,6 +20,11 @@ mixin _ControllerListener<T> on State<SearchBar<T>> {
   void onError(Error error) {}
 }
 
+
+
+
+// ----------------------------------------------------------------------------------------------------------------
+// Controller
 class SearchBarController<T> {
   final List<T> _list = [];
   final List<T> _filteredList = [];
@@ -125,9 +130,17 @@ class SearchBarController<T> {
   }
 }
 
+
+
+
+
 /// Signature for a function that creates [ScaledTile] for a given index.
 typedef ScaledTile IndexedScaledTileBuilder(int index);
 
+
+// ----------------------------------------------------------------------------------------------------------------
+// SearchBar => StatefulWidget
+// 위젯 생성이 우선이다.
 class SearchBar<T> extends StatefulWidget {
   /// Future returning searched items
   final Future<List<T>> Function(String? text) onSearch;
@@ -140,6 +153,9 @@ class SearchBar<T> extends StatefulWidget {
 
   /// Minimum number of chars required for a search
   final int minimumChars;
+
+  /// 검색어 최대 문자열
+  final int maximumChars;
 
   /// Callback returning the widget corresponding to an item found
   final Widget Function(T? item, int index) onItemFound;
@@ -222,7 +238,8 @@ class SearchBar<T> extends StatefulWidget {
     required this.onSearch,
     required this.onItemFound,
     this.searchBarController,
-    this.minimumChars = 3,
+    this.minimumChars = 2,  // 최소 검색어 수
+    this.maximumChars = 10, // 최대 검색어 수
     this.debounceDuration = const Duration(milliseconds: 500),
     this.loader = const Center(child: CircularProgressIndicator()),
     this.onError,
@@ -254,15 +271,15 @@ class SearchBar<T> extends StatefulWidget {
   _SearchBarState createState() => _SearchBarState<T>();
 }
 
-class _SearchBarState<T> extends State<SearchBar<T?>>
-    with TickerProviderStateMixin, _ControllerListener<T?> {
+
+class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMixin, _ControllerListener<T?> {
   bool _loading = false;
   Widget? _error;
   final _searchQueryController = TextEditingController();
   Timer? _debounce;
   bool _animate = false;
   List<T?> _list = [];
-  late SearchBarController searchBarController;
+  late SearchBarController searchBarController; // 위젯을 생성하면서 컨트롤러 생성
 
   @override
   void initState() {
