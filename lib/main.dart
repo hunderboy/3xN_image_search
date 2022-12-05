@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
 
           GetPage(
               name: "/",
-              page: () => Lobby(),
+              page: () => const Lobby(),
               transition: Transition.rightToLeft),
           // GetPage(
           //     name: "/ShowPicture",

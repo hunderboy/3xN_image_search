@@ -1,23 +1,20 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../getx_controller/lobby_controller.dart';
 import '../model/Post.dart';
+import '../search_bar/custom_gridview/image_tile.dart';
 import '../search_bar/flappy_search_bar_ns.dart';
 import '../search_bar/scaled_tile.dart';
 import 'detail.dart';
 
 
 class Lobby extends GetView<LobbyController> {
-  Lobby({Key? key}) : super(key: key);
-
-  final List<String> _items = List.generate(30, (index) => 'Item ${index + 1}');
+  const Lobby({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put(LobbyController());
-
 
     return Scaffold(
       appBar: AppBar(
@@ -37,8 +34,8 @@ class Lobby extends GetView<LobbyController> {
           cancellationWidget: const Text("취소"),
           placeHolder: const Center(child: Text("이미지를 검색하여 주세요")),
           emptyWidget: const Center(child: Text("검색 결과가 없습니다.")),
-          indexedScaledTileBuilder: (int index) => ScaledTile.count(1, index.isEven ? 2 : 1),
 
+          indexedScaledTileBuilder: (int index) => ScaledTile.count(1, index.isEven ? 2 : 1),
           onCancelled: () {
             print("Cancelled triggered");
           },
@@ -47,20 +44,25 @@ class Lobby extends GetView<LobbyController> {
           crossAxisCount: 2,
           onItemFound: (Post? post, int index) {
             return Container(
-              color: Colors.lightBlue,
-              child: ListTile(
-                title: Text(post?.title ?? 'fail' ),
-                isThreeLine: true,
-                subtitle: Text(post?.body ?? 'fail'),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Detail()));
-                },
-              ),
+              child:
+              ImageTile(
+                // title: deduplicatedList[index].name,
+                title : "텍스트"
+              )
+              // ListTile(
+              //   title: Text(post?.title ?? 'fail' ),
+              //   isThreeLine: true,
+              //   subtitle: Text(post?.body ?? 'fail'),
+              //   onTap: () {
+              //     // 페이지 이동
+              //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Detail()));
+              //   }
+              // )
             );
-          },
-        ),
+          }
+        )
 
-      ),
+      )
     );
 
   }
