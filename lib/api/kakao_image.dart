@@ -10,21 +10,25 @@ class KakaoImage {
     required this.documents,
   });
 
-  factory KakaoImage.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  /// 수정전
+  // factory KakaoImage.fromJson(Map<String, dynamic> json) => _$KakaoImageFromJson(json);
+  // Map<String, dynamic> toJson() => _$KakaoImageToJson(this);
+  /// 수정 후
+  factory KakaoImage.fromJson(List<Map<String, dynamic>> json) => _$KakaoImageFromJson(json);
+  List<Map<String, dynamic>> toJson() => _$KakaoImageToJson(this);
 }
 
 @JsonSerializable()
 class Documents {
   Documents({
     required this.collection,
-    required this.datetime,
-    required this.display_sitename,
-    required this.doc_url,
-    required this.image_url,
-    required this.thumbnail_url,
-    required this.height,
-    required this.width,
+    // required this.datetime,
+    // required this.display_sitename,
+    // required this.doc_url,
+    // required this.image_url,
+    // required this.thumbnail_url,
+    // required this.height,
+    // required this.width,
   });
 
 
@@ -38,21 +42,25 @@ class Documents {
   // "width": 700
   @JsonKey(name: 'collection')
   String collection;
-  @JsonKey(name: 'datetime')
-  String datetime;
-  @JsonKey(name: 'display_sitename')
-  String display_sitename;
-  @JsonKey(name: 'doc_url')
-  String doc_url;
-  @JsonKey(name: 'image_url')
-  String image_url;
-  @JsonKey(name: 'thumbnail_url')
-  String thumbnail_url;
-  @JsonKey(name: 'height')
-  int height;
-  @JsonKey(name: 'width')
-  int width;
+  // @JsonKey(name: 'datetime')
+  // String datetime;
+  // @JsonKey(name: 'display_sitename')
+  // String display_sitename;
+  // @JsonKey(name: 'doc_url')
+  // String doc_url;
+  // @JsonKey(name: 'image_url')
+  // String image_url;
+  // @JsonKey(name: 'thumbnail_url')
+  // String thumbnail_url;
+  // @JsonKey(name: 'height')
+  // int height;
+  // @JsonKey(name: 'width')
+  // int width;
 
-  factory Documents.fromJson(Map<String, dynamic> json) => _$DocumentsFromJson(json);
-  Map<String, dynamic> toJson() => _$DocumentsToJson(this);
+  /// 수정전
+  // factory Documents.fromJson(Map<String, dynamic> json) => _$DocumentsFromJson(json);
+  // Map<String, dynamic> toJson() => _$DocumentsToJson(this);
+  /// 수정 후
+  factory Documents.fromJson(List<Map<String, dynamic>> json) => _$DocumentsFromJson(json);
+  List<Map<String, dynamic>> toJson() => _$DocumentsToJson(this);
 }

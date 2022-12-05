@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../api/custom_log_interceptor.dart';
+import '../api/rest_client.dart';
 import '../getx_controller/lobby_controller.dart';
 import '../model/Post.dart';
 import '../search_bar/custom_gridview/image_tile.dart';
@@ -10,15 +13,36 @@ import 'detail.dart';
 
 
 class Lobby extends GetView<LobbyController> {
-  const Lobby({Key? key}) : super(key: key);
+  Lobby({Key? key}) : super(key: key);
+
+  final dio = Dio()
+    ..interceptors.add(
+      CustomLogInterceptor(),
+    );
+
 
   @override
   Widget build(BuildContext context) {
     Get.put(LobbyController());
 
+    dio.options.headers["Authorization"] = "KakaoAK 53a7d75ab73902f2362333caed881270"; // config your dio headers globally
+    final _client = RestClient(dio);
+
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('이미지 검색'),
+        title:
+        // const Text('이미지 검색'),
+        SizedBox(
+          height: 50,
+          child: ElevatedButton(
+            onPressed: () {
+              _client.getImageDatas("안녕", 30, 1);
+            },
+            child: const Text("API 통신"),
+          ),
+        ),
+
       ),
       body: SafeArea(
         bottom: false,

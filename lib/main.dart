@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           // fontFamily: 'Pretendard',   /// 전체 Text 폰트 적용
         ),
-        initialRoute: "/SplashLottie",
+        // initialRoute: "/SplashLottie",
+        initialRoute: "/",
 
         getPages: [
 
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
 
           GetPage(
               name: "/",
-              page: () => const Lobby(),
+              page: () => Lobby(),
               transition: Transition.rightToLeft),
           // GetPage(
           //     name: "/ShowPicture",
