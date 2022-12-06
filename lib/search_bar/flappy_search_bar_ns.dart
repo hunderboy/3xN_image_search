@@ -318,7 +318,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
   void onError(Error error) {
     setState(() {
       _loading = false;
-      _error = widget.onError != null ? widget.onError!(error) : const Center(child: Text("Error"));
+      _error = widget.onError != null ? widget.onError!(error) : const Center(child: Text("에러가 발생하였습니다.\n다시 시도하여 주세요."));
     });
   }
 
