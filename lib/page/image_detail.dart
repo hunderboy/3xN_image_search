@@ -17,12 +17,27 @@ class ImageDetail extends GetView<ImageDetailController>  {
       ),
       body: SafeArea(
         child:
-            Center(
-              child: CachedNetworkImage(
-                imageUrl: controller.image_url,
-                fit: BoxFit.cover,
+          Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: controller.image_url,
+                    /// 긴 이미지 테스트
+                    // imageUrl: "https://cdn.newspenguin.com/news/photo/201908/676_1083_1418.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                  Column(
+                      children: [
+                        Text("display_sitename : ${controller.display_sitename}"),
+                        Text("datetime : ${controller.datetime}"),
+                      ]
+                  )
+                ]
               )
             )
+
+          )
       )
     );
   }
