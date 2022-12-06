@@ -330,6 +330,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
 
     // Timer(몇초뒤에 실핼할건가?, 실행할 함수)
     _debounce = Timer(widget.debounceDuration, () async {
+      /// 검색단어 앞뒤 공백 제거
       // print('newText : $newText, 길이 : ${newText.length}');
       String trimed_text = newText.trim();
       // print('after trim : $trimed_text, 길이 : ${trimed_text.length}');
@@ -378,6 +379,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
     return Padding(
       padding: widget.listPadding,
       child:
+      /// 1줄에 3개 보여주는 GridView 설정
       GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,        // 1 개의 행에 보여줄 item 개수
@@ -394,20 +396,6 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
           // );
         }
       )
-      // StaggeredGridView.countBuilder(
-      //   crossAxisCount: widget.crossAxisCount,
-      //   itemCount: items.length,
-      //   shrinkWrap: widget.shrinkWrap,
-      //   staggeredTileBuilder: widget.indexedScaledTileBuilder ??
-      //       ((int index) => ScaledTile.fit(1)),
-      //   scrollDirection: widget.scrollDirection,
-      //   mainAxisSpacing: widget.mainAxisSpacing,
-      //   crossAxisSpacing: widget.crossAxisSpacing,
-      //   addAutomaticKeepAlives: true,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return builder(items[index], index);
-      //   },
-      // ),
     );
   }
 
@@ -452,6 +440,9 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
                     child: Padding(
                       padding: widget.searchBarStyle.padding,
                       child: Theme(
+                        data: Theme.of(context).copyWith(
+                          primaryColor: widget.iconActiveColor,
+                        ),
                         child: TextField(
                           controller: _searchQueryController,
                           onChanged: _onTextChanged,
@@ -462,9 +453,6 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
                             hintText: widget.hintText,
                             hintStyle: widget.hintStyle,
                           ),
-                        ),
-                        data: Theme.of(context).copyWith(
-                          primaryColor: widget.iconActiveColor,
                         ),
                       ),
                     ),

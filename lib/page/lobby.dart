@@ -1,32 +1,20 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../api/custom_log_interceptor.dart';
 import '../api/kakao_data.dart';
-import '../api/kakao_rest_client.dart';
 import '../getx_controller/lobby_controller.dart';
-import '../model/Post.dart';
+import '../search_bar/custom_gridview/image_tile.dart';
 import '../search_bar/flappy_search_bar_ns.dart';
 import '../singleton.dart';
 
 
 class Lobby extends GetView<LobbyController> {
-  Lobby({Key? key}) : super(key: key);
-
-  // final dio = Dio()
-  //   ..interceptors.add(
-  //     CustomLogInterceptor(),
-  //   );
+  const Lobby({Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     Get.put(LobbyController());
-
-    // dio.options.headers["Authorization"] = Singleton().KAKAO_API_KEY;
-    // final client = RestClient(dio);
 
     return Scaffold(
       appBar: AppBar(
@@ -49,12 +37,10 @@ class Lobby extends GetView<LobbyController> {
       body: SafeArea(
         bottom: false,
         child:
-
-
         SearchBar<KImage>(
-            onSearch: controller.getSearchedImages, /// 검색 함수 Future
+            onSearch: controller.getSearchedImages, /// 검색 함수 설정
             searchBarController: controller.searchBarController,
-            debounceDuration: const Duration(milliseconds: 1000), /// 1초후 검색이 실행되게 함
+            debounceDuration: const Duration(milliseconds: 1000), /// 1초후 검색이 실행
 
             /// Padding 설정
             searchBarPadding: const EdgeInsets.symmetric(horizontal: 10),
@@ -67,91 +53,34 @@ class Lobby extends GetView<LobbyController> {
             placeHolder: const Center(child: Text("이미지를 검색하여 주세요")),
             emptyWidget: const Center(child: Text("검색 결과가 없습니다.")),
 
-
             onItemFound: (KImage? k_Image, int index) {
-              return Container(
-                  child:
-                  Container(
-                      width: double.infinity,
-                      child:
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(14),
-                          child: Container(
-                            color: Colors.redAccent,
-                            width: double.infinity,
-                            child:
-                            CachedNetworkImage(
-                              imageUrl: k_Image!.thumbnail_url,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                      )
-                  )
 
-              );
+              if (k_Image != null) {
+                return  ImageTile(
+                  collection : k_Image.collection,
+                  thumbnail_url : k_Image.thumbnail_url,
+                  image_url : k_Image.image_url,
+                  display_sitename : k_Image.display_sitename,
+                  doc_url : k_Image.doc_url,
+                  datetime : k_Image.datetime,
+                  width : k_Image.width,
+                  height : k_Image.height,
+                );
+              }else{
+                return ImageTile(
+                  collection : "result_empty",
+                  thumbnail_url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE1BFq0h-RvrEBWCMPudD2QMYcG2BDJVDYNw&usqp=CAU",
+                  image_url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE1BFq0h-RvrEBWCMPudD2QMYcG2BDJVDYNw&usqp=CAU",
+                  display_sitename : "result_empty",
+                  doc_url : "result_empty",
+                  datetime : "result_empty",
+                  width : 0,
+                  height : 0,
+                );
+              }
+
             }
         )
-
-
-        // SearchBar<Post>(
-        //   onSearch: controller.getALlPosts, /// 검색 함수 Future
-        //   // onSearch:  client.getImageDatas("손흥민", 30, 1),
-        //   searchBarController: controller.searchBarController,
-        //   debounceDuration: const Duration(milliseconds: 1000), /// 1초후 검색이 실행되게 함
-        //
-        //   /// Padding 설정
-        //   searchBarPadding: const EdgeInsets.symmetric(horizontal: 10),
-        //   headerPadding: const EdgeInsets.symmetric(horizontal: 10),
-        //   listPadding: const EdgeInsets.symmetric(horizontal: 10),
-        //
-        //   /// 예외상황 UI 설정
-        //   cancellationWidget: const Text("취소"),
-        //   onCancelled: () {Singleton().showToast("검색이 취소되었습니다.");},
-        //   placeHolder: const Center(child: Text("이미지를 검색하여 주세요")),
-        //   emptyWidget: const Center(child: Text("검색 결과가 없습니다.")),
-        //
-        //   // indexedScaledTileBuilder: (int index) => ScaledTile.count(1, index.isEven ? 2 : 1), // 타일 비율 설정
-        //
-        //   // mainAxisSpacing: 10,
-        //   // crossAxisSpacing: 10,
-        //   // crossAxisCount: 2,
-        //
-        //   onItemFound: (Post? post, int index) {
-        //     return Container(
-        //       child:
-        //       Container(
-        //           width: double.infinity,
-        //           child:
-        //           ClipRRect(
-        //               borderRadius: BorderRadius.circular(14),
-        //               child: Container(
-        //                 color: Colors.redAccent,
-        //                 width: double.infinity,
-        //                 // CachedNetworkImage(
-        //                 //   imageUrl: imageThumbnailUrl,
-        //                 //   fit: BoxFit.cover,
-        //                 // ),
-        //               )
-        //           )
-        //       )
-        //
-        //       // ImageTile(
-        //       //   // title: deduplicatedList[index].name,
-        //       //   title : "텍스트"
-        //       // )
-        //
-        //       // ListTile(
-        //       //   title: Text(post?.title ?? 'fail' ),
-        //       //   isThreeLine: true,
-        //       //   subtitle: Text(post?.body ?? 'fail'),
-        //       //   onTap: () {
-        //       //     // 페이지 이동
-        //       //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Detail()));
-        //       //   }
-        //       // )
-        //     );
-        //   }
-        // )
 
       )
     );
