@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'api/test_image_3xn.dart';
 import 'page/lobby.dart';
 import 'page/splash.dart';
 
@@ -52,10 +53,10 @@ class MyApp extends StatelessWidget {
               name: "/",
               page: () => Lobby(),
               transition: Transition.rightToLeft),
-          // GetPage(
-          //     name: "/ShowPicture",
-          //     page: () => ShowPicture(),
-          //     transition: Transition.rightToLeft),
+          GetPage(
+              name: "/TestImage3xN",
+              page: () => TestImage3xN(),
+              transition: Transition.rightToLeft),
 
         ]
     );
