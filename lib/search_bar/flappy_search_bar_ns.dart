@@ -279,6 +279,8 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
   List<T?> _list = [];
   late SearchBarController searchBarController; // 위젯을 생성하면서 컨트롤러 생성
 
+  late FocusNode myFocusNode;
+
   /// 초기화
   @override
   void initState() {
@@ -286,6 +288,8 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
     searchBarController = widget.searchBarController ?? SearchBarController<T>();
     searchBarController.setListener(this);
     searchBarController.setTextController(_searchQueryController, widget.minimumChars);
+
+    myFocusNode = FocusNode();
   }
 
   @override
@@ -444,6 +448,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
                           controller: _searchQueryController,
                           onChanged: _onTextChanged,
                           style: widget.textStyle,
+                          focusNode: myFocusNode,
                           decoration: InputDecoration(
                             icon: widget.icon,
                             border: InputBorder.none,
