@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:assignment_brandi/singleton.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../search_bar/custom_gridview/image_tile.dart';
@@ -17,40 +17,35 @@ class TestImage3xN extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    dio.options.headers["Authorization"] = "KakaoAK 53a7d75ab73902f2362333caed881270"; // config your dio headers globally
-    final _client = RestClient(dio);
+    dio.options.headers["Authorization"] = Singleton().KAKAO_API_KEY;
+    final client = RestClient(dio);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('TestImage3xN'),
       ),
-      body: Center(
-        // child: Text('Dio'),
+      body: FutureBuilder<KakaoData?>(
+        future: client.getImageDatas(
+            "손흥민",   /// 검색어
+            30,       /// 1 페이지 표시할 이미지 개수
+            1         /// page 번호
+        ),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            KakaoData? kakaoDataInfo = snapshot.data;
 
-        child:
-        FutureBuilder<KakaoData?>(
-          future: _client.getImageDatas(
-              "호날두",/// 검색어
-              30,   /// 1 페이지 표시할 이미지 개수
-              1     /// page 번호
-          ), // 데이터 요청
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              KakaoData? kakaoDataInfo = snapshot.data;
-
-              if (kakaoDataInfo != null) {
-                // print("total_count : "+kakaoDataInfo.meta.total_count.toString());
-                // print("pageable_count : "+kakaoDataInfo.meta.pageable_count.toString());
-                // print("is_end : "+kakaoDataInfo.meta.is_end.toString());
-                print("KakaoData.meta.is_end : "+kakaoDataInfo.meta.is_end.toString());
-                print("KakaoData.documents.length : "+kakaoDataInfo.documents.length.toString());
-                print("KakaoData.documents.image_url : "+kakaoDataInfo.documents[0].image_url.toString());
-
-
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child:
-                  GridView.builder(
+            if (kakaoDataInfo != null) {
+              /// 데이터 확인
+              // print("total_count : "+kakaoDataInfo.meta.total_count.toString());
+              // print("pageable_count : "+kakaoDataInfo.meta.pageable_count.toString());
+              // print("is_end : "+kakaoDataInfo.meta.is_end.toString());
+              // print("KakaoData.meta.is_end : "+kakaoDataInfo.meta.is_end.toString());
+              // print("KakaoData.documents.length : "+kakaoDataInfo.documents.length.toString());
+              // print("KakaoData.documents.image_url : "+kakaoDataInfo.documents[0].image_url.toString());
+              return Padding(
+                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                child:
+                GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,        // 1 개의 행에 보여줄 item 개수
                       childAspectRatio: 1/1,    // item 의 가로 1, 세로 2 의 비율 (기본은 1대1 비뮬)
@@ -59,6 +54,7 @@ class TestImage3xN extends StatelessWidget {
                     ),
                     itemCount: kakaoDataInfo.documents.length,
                     itemBuilder: (context, index) {
+                      /// 이미지 url 확인
                       // print("KakaoData.documents.image_url : "+kakaoDataInfo.documents[index].image_url.toString());
                       return  ImageTile(
                         collection : kakaoDataInfo.documents[index].collection,
@@ -71,15 +67,13 @@ class TestImage3xN extends StatelessWidget {
                         height : kakaoDataInfo.documents[index].height,
                       );
                     }
-                  )
-                );
-              }
-
-              return const Text('검색된 데이터 없음');
+                )
+              );
             }
-            return const CircularProgressIndicator();
+            return const Text('검색된 데이터 없음');
           }
-        )
+          return const CircularProgressIndicator(); // 로딩중
+        }
       )
     );
   }

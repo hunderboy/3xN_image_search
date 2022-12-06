@@ -13,6 +13,9 @@ class Singleton {
     // do nothing
   }
 
+  String KAKAO_API_KEY = "KakaoAK 53a7d75ab73902f2362333caed881270";
+
+
   showToast(String message) {
     Fluttertoast.showToast(
         msg: message,

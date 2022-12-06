@@ -15,5 +15,5 @@ abstract class RestClient {
       @Query("query") String query,
       @Query("size") int size,
       @Query("page") int page,
-      );
+  );
 }
