@@ -1,12 +1,9 @@
-// library flappy_search_bar_ns;
-
 import 'dart:async';
 
 import 'package:assignment_brandi/singleton.dart';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_gridview/image_tile.dart';
 import 'scaled_tile.dart';
 import 'search_bar_style.dart';
 

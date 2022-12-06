@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../api/kakao_data.dart';
+import '../custom_gridview/tile/image_tile.dart';
 import '../getx_controller/lobby_controller.dart';
-import '../search_bar/custom_gridview/image_tile.dart';
 import '../search_bar/flappy_search_bar_ns.dart';
 import '../singleton.dart';
 

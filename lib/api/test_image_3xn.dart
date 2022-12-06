@@ -1,7 +1,7 @@
 import 'package:assignment_brandi/singleton.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import '../search_bar/custom_gridview/image_tile.dart';
+import '../custom_gridview/tile/image_tile.dart';
 import 'custom_log_interceptor.dart';
 import 'kakao_data.dart';
 import 'kakao_rest_client.dart';

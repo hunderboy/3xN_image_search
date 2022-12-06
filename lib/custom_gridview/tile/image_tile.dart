@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-
+/// 기존의 staggered_grid_view 에서
+///
 class ImageTile extends StatelessWidget {
   ImageTile({Key? key,
     required this.collection,
