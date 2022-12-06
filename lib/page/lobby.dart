@@ -70,10 +70,27 @@ class Lobby extends GetView<LobbyController> {
           onItemFound: (Post? post, int index) {
             return Container(
               child:
-              ImageTile(
-                // title: deduplicatedList[index].name,
-                title : "텍스트"
+              Container(
+                  width: double.infinity,
+                  child:
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(14),
+                      child: Container(
+                        color: Colors.redAccent,
+                        width: double.infinity,
+                        // CachedNetworkImage(
+                        //   imageUrl: imageThumbnailUrl,
+                        //   fit: BoxFit.cover,
+                        // ),
+                      )
+                  )
               )
+
+              // ImageTile(
+              //   // title: deduplicatedList[index].name,
+              //   title : "텍스트"
+              // )
+
               // ListTile(
               //   title: Text(post?.title ?? 'fail' ),
               //   isThreeLine: true,

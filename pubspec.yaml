@@ -38,13 +38,18 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 
-  get: ^4.6.5                 # Getx 상태관리
-  retrofit: '>=3.0.0 <4.0.0'
+
+  get: ^4.6.5 # Getx 상태관리
+
+  retrofit: '>=3.0.0 <4.0.0' # http 통신관련
   dio: ^4.0.6
   json_annotation: ^4.4.0
-  lottie: ^2.0.0
+
+  lottie: ^2.0.0 # 로티 애니메이션
 #  flappy_search_bar_ns: ^2.0.2
-  fluttertoast: ^8.1.1
+
+  fluttertoast: ^8.1.1 # 토스트 메세지
+  cached_network_image: ^3.2.0  # 이미지 캐싱
 
 
 
