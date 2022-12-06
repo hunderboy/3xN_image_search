@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 /// 기존의 staggered_grid_view 에서
 ///
@@ -30,8 +31,16 @@ class ImageTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         /// 이미지 상세 보기 화면으로 이동
-        // Get.toNamed("/GuideDetailPage?viewIndex=$viewIndex&guideUrl=$guideUrl");
-        // Get.toNamed("/GuideDetailPage", arguments: exerciseObject);
+        // Get.toNamed("/GuideDetailPage",
+        //   arguments: image_url,
+        //   arguments: display_sitename,
+        //   arguments: datetime,
+        // );
+        Get.toNamed('/ImageDetail/value?'
+            'image_url=$image_url&'
+            'display_sitename=$display_sitename&'
+            'datetime=$datetime'
+        );
       },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
