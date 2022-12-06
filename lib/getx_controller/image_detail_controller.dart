@@ -15,13 +15,18 @@ class ImageDetailController extends GetxController {
   void onInit() async {
     print("ImageDetailController ---------------------------- onInit()");
     /// Getx 로 부터 넘어온 파라미터 추출
-    image_url = Get.parameters['image_url'] ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE1BFq0h-RvrEBWCMPudD2QMYcG2BDJVDYNw&usqp=CAU";
+    // image_url = Get.parameters['image_url'] ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE1BFq0h-RvrEBWCMPudD2QMYcG2BDJVDYNw&usqp=CAU";
+
+    image_url = Get.arguments;
+
     display_sitename = Get.parameters['display_sitename'] ?? "";
     datetime = Get.parameters['datetime'] ?? "";
 
-    print('image_url : $image_url');
-    print('display_sitename : $display_sitename');
-    print('datetime : $datetime');
+    // image_url 압축 처리를 해줘야 할듯..박지성
+
+    // print('image_url : $image_url');
+    // print('display_sitename : $display_sitename');
+    // print('datetime : $datetime');
 
 
     super.onInit();

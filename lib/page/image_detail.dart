@@ -23,18 +23,6 @@ class ImageDetail extends GetView<ImageDetailController>  {
                 fit: BoxFit.cover,
               )
             )
-
-
-        // Column(
-        //   children: <Widget>[
-        //     IconButton(
-        //       icon: Icon(Icons.arrow_back),
-        //       onPressed: () => Navigator.of(context).pop(),
-        //     ),
-        //     Text("Detail"),
-        //   ]
-        // )
-
       )
     );
   }

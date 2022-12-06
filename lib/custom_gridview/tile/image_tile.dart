@@ -31,15 +31,10 @@ class ImageTile extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         /// 이미지 상세 보기 화면으로 이동
-        // Get.toNamed("/GuideDetailPage",
-        //   arguments: image_url,
-        //   arguments: display_sitename,
-        //   arguments: datetime,
-        // );
         Get.toNamed('/ImageDetail/value?'
-            'image_url=$image_url&'
             'display_sitename=$display_sitename&'
-            'datetime=$datetime'
+            'datetime=$datetime',
+            arguments: image_url /// Unexpected extension byte 우회처리
         );
       },
       child: ClipRRect(
