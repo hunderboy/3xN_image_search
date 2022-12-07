@@ -278,6 +278,8 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
   bool _animate = false;
   List<T?> _list = [];
   late SearchBarController searchBarController; // 위젯을 생성하면서 컨트롤러 생성
+  String previousSearchText = "";
+
 
   /// 초기화
   @override
@@ -336,6 +338,10 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
       if(trimed_text.isEmpty){
         // do nothing
       }
+      else if(trimed_text == previousSearchText){
+        // do nothing
+        // // 이전 검색어와 같을 경우 = 중복 검색 방지
+      }
       // 글자수 1개인 경우
       else if(trimed_text.length < widget.minimumChars){
         Singleton().showToast("글자수 2개 이상 적어 주세요");
@@ -345,6 +351,7 @@ class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMi
         Singleton().showToast("글자수 10개 이하로 적어 주세요");
       }
       else if (trimed_text.length >= widget.minimumChars) {
+        previousSearchText = trimed_text;
         searchBarController._search(trimed_text, widget.onSearch); // 검색 실행
       } else {
         setState(() {
