@@ -1,4 +1,4 @@
-# assignment_brandi
+# 3xN_image_search
 
 A new Flutter project.
 
