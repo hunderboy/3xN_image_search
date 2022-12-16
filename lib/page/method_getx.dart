@@ -3,18 +3,18 @@ import 'package:get/get.dart';
 
 import '../api/kakao_data.dart';
 import '../custom_gridview/tile/image_tile.dart';
-import '../getx_controller/lobby_controller.dart';
+import '../getx_controller/method_getx_controller.dart';
 import '../search_bar/flappy_search_bar_ns.dart';
 import '../singleton.dart';
 
 
-class Lobby extends GetView<LobbyController> {
-  const Lobby({Key? key}) : super(key: key);
+class MethodGetx extends GetView<MethodGetxController> {
+  const MethodGetx({Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    Get.put(LobbyController());
+    Get.put(MethodGetxController());
 
     return Scaffold(
       appBar: AppBar(

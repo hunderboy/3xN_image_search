@@ -8,7 +8,7 @@ import '../search_bar/flappy_search_bar_ns.dart';
 import '../singleton.dart';
 
 
-class LobbyController extends GetxController {
+class MethodGetxController extends GetxController {
 
   /// 검색창 컨트롤러 설정
   final SearchBarController<KImage> searchBarController = SearchBarController();

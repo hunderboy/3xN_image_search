@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'lobby.dart';
+import 'method_getx.dart';
 
 
 class Splash extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       const Duration(seconds: 5),
       () => Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (BuildContext context) => Lobby()),
+      MaterialPageRoute(builder: (BuildContext context) => const MethodGetx()),
       (route) => false)
     );
   }

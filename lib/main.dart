@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'api/test_image_3xn.dart';
+import 'page/home.dart';
 import 'page/image_detail.dart';
-import 'page/lobby.dart';
+import 'page/method_getx.dart';
 import 'page/splash.dart';
 
 
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           // fontFamily: 'Pretendard',   /// 전체 Text 폰트 적용
         ),
         // initialRoute: "/SplashLottie",
-        initialRoute: "/",
+        initialRoute: "/Home",
 
         getPages: [
 
@@ -51,8 +52,12 @@ class MyApp extends StatelessWidget {
               transition: Transition.rightToLeft),
 
           GetPage(
+              name: "/Home",
+              page: () => const Home(),
+              transition: Transition.rightToLeft),
+          GetPage(
               name: "/",
-              page: () => const Lobby(),
+              page: () => const MethodGetx(),
               transition: Transition.rightToLeft),
           GetPage(
               name: "/ImageDetail",
@@ -62,8 +67,6 @@ class MyApp extends StatelessWidget {
               name: "/TestImage3xN", // 이미지 테스트 화면
               page: () => TestImage3xN(),
               transition: Transition.rightToLeft),
-
-
         ]
     );
 
