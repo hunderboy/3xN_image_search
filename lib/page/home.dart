@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
     return
       Scaffold(
         appBar: AppBar(
-            title: const Text("Bloc / Stream")
+            title: const Text("이미지 검색")
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

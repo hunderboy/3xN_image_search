@@ -18,21 +18,20 @@ class MethodGetx extends GetView<MethodGetxController> {
 
     return Scaffold(
       appBar: AppBar(
-        title:
-        // const Text('이미지 검색'),
-        SizedBox(
-          height: 50,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.lightGreen, // foreground
-            ),
-            onPressed: () {
-              Get.toNamed("/TestImage3xN");
-            },
-            child: const Text("API 통신 테스트"),
-          ),
-        ),
+        title: const Text('이미지 검색'),
+        // SizedBox(
+        //   height: 50,
+        //   child: ElevatedButton(
+        //     style: ElevatedButton.styleFrom(
+        //       foregroundColor: Colors.white,
+        //       backgroundColor: Colors.lightGreen, // foreground
+        //     ),
+        //     onPressed: () {
+        //       Get.toNamed("/TestImage3xN");
+        //     },
+        //     child: const Text("API 통신 테스트"),
+        //   ),
+        // ),
       ),
       body: SafeArea(
         bottom: false,
