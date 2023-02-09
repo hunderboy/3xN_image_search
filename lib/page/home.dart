@@ -47,6 +47,14 @@ class Home extends StatelessWidget {
                 },
               ),
             ),
+            ElevatedButton(
+              child: const Text("Search Bar 커스텀 수정, 코드 분리"),
+              onPressed: () {
+                // Navigator.push(context, MaterialPageRoute(builder: (_) {
+                //   return PlusStatefulDisplayWidget();
+                // }));
+              },
+            ),
           ],
         ),
       );
