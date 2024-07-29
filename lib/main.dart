@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
         title: 'FunctionModule',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.blue,
+          colorScheme: const ColorScheme.light(surface: Colors.white),
           // fontFamily: 'Pretendard',   /// 전체 Text 폰트 적용
         ),
         // initialRoute: "/SplashLottie",

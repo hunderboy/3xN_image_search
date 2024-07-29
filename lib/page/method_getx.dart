@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:assignment_brandi/search_bar/flappy_search_bar_ns.dart';
+
 import '../api/kakao_data.dart';
 import '../custom_gridview/tile/image_tile.dart';
 import '../getx_controller/method_getx_controller.dart';
@@ -36,7 +38,7 @@ class MethodGetx extends GetView<MethodGetxController> {
       body: SafeArea(
         bottom: false,
         child:
-        SearchBar<KImage>(
+        SearchBarCS<KImage>(
             onSearch: controller.getSearchedImages, /// 검색 함수 설정
             searchBarController: controller.searchBarController,
             debounceDuration: const Duration(milliseconds: 1000), /// 1초후 검색이 실행

@@ -8,7 +8,7 @@ import 'scaled_tile.dart';
 import 'search_bar_style.dart';
 
 
-mixin _ControllerListener<T> on State<SearchBar<T>> {
+mixin _ControllerListener<T> on State<SearchBarCS<T>> {
   void onListChanged(List<T> items) {}
 
   void onLoading() {}
@@ -139,7 +139,7 @@ typedef ScaledTile IndexedScaledTileBuilder(int index);
 // ----------------------------------------------------------------------------------------------------------------
 // SearchBar => StatefulWidget
 // 위젯 생성이 우선이다.
-class SearchBar<T> extends StatefulWidget {
+class SearchBarCS<T> extends StatefulWidget {
   /// Future returning searched items
   final Future<List<T>> Function(String? text) onSearch;
 
@@ -231,7 +231,7 @@ class SearchBar<T> extends StatefulWidget {
   /// Set a padding on the list
   final EdgeInsetsGeometry listPadding;
 
-  SearchBar({
+  SearchBarCS({
     Key? key,
     required this.onSearch,
     required this.onItemFound,
@@ -270,7 +270,7 @@ class SearchBar<T> extends StatefulWidget {
 }
 
 
-class _SearchBarState<T> extends State<SearchBar<T?>> with TickerProviderStateMixin, _ControllerListener<T?> {
+class _SearchBarState<T> extends State<SearchBarCS<T?>> with TickerProviderStateMixin, _ControllerListener<T?> {
   bool _loading = false;
   Widget? _error;
   final _searchQueryController = TextEditingController();
