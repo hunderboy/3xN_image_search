@@ -1,4 +1,4 @@
-import 'package:assignment_brandi/custom_search_bar/search_bar/custom_search_bar_ns.dart';
+import 'package:assignment_brandi/search_bar/flappy_search_bar_ns.dart';
 import 'package:flutter/material.dart';
 
 import '../model/attendee.dart';
@@ -114,7 +114,7 @@ class _HomeState extends State<SearchBarTestView> {
         //   },
         // ),
 
-        SearchBar<Attendee>(
+        SearchBarCS<Attendee>(
           minimumChars: 1,
           searchBarPadding: const EdgeInsets.symmetric(horizontal: 10),
           headerPadding: const EdgeInsets.symmetric(horizontal: 10),
