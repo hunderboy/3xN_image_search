@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:assignment_brandi/search_bar/flappy_search_bar_ns.dart';
+
 import '../api/kakao_data.dart';
 import '../custom_gridview/tile/image_tile.dart';
-import '../getx_controller/lobby_controller.dart';
-import '../search_bar/flappy_search_bar_ns.dart';
+import '../getx_controller/method_getx_controller.dart';
 import '../singleton.dart';
 
 
-class Lobby extends GetView<LobbyController> {
-  const Lobby({Key? key}) : super(key: key);
+class MethodGetx extends GetView<MethodGetxController> {
+  const MethodGetx({Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    Get.put(LobbyController());
+    Get.put(MethodGetxController());
 
     return Scaffold(
       appBar: AppBar(
-        title:
-        // const Text('이미지 검색'),
-        SizedBox(
-          height: 50,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.lightGreen, // foreground
-            ),
-            onPressed: () {
-              Get.toNamed("/TestImage3xN");
-            },
-            child: const Text("API 통신 테스트"),
-          ),
-        ),
+        title: const Text('이미지 검색'),
+        // SizedBox(
+        //   height: 50,
+        //   child: ElevatedButton(
+        //     style: ElevatedButton.styleFrom(
+        //       foregroundColor: Colors.white,
+        //       backgroundColor: Colors.lightGreen, // foreground
+        //     ),
+        //     onPressed: () {
+        //       Get.toNamed("/TestImage3xN");
+        //     },
+        //     child: const Text("API 통신 테스트"),
+        //   ),
+        // ),
       ),
       body: SafeArea(
         bottom: false,
         child:
-        SearchBar<KImage>(
+        SearchBarCS<KImage>(
             onSearch: controller.getSearchedImages, /// 검색 함수 설정
             searchBarController: controller.searchBarController,
             debounceDuration: const Duration(milliseconds: 1000), /// 1초후 검색이 실행
