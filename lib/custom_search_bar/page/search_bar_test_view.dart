@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../model/attendee.dart';
 import '../widget/attendee_item.dart';
-
+// custom_serche
 
 
 
@@ -76,6 +76,9 @@ class _HomeState extends State<SearchBarTestView> {
       backgroundColor: const Color(0xffEFF1F3),
       body: SafeArea(
         child:
+
+
+
 
         // SearchBar<Post>(
         //   minimumChars: 1,
